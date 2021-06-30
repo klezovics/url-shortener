@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<nav th:fragment="header">
+    <h1 id="page-name">URL shortener application</h1>
+    <p sec:authorize="isAuthenticated()">Logged in as <span sec:authentication="name"></span></li></p>
+
+    <ul class="navbar">
+        <li><a th:href="@{/}">Home</a></li>
+        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/admin/statistics}">Statistics</a>
+        </li>
+    </ul>
+</nav>
+
+</html>
